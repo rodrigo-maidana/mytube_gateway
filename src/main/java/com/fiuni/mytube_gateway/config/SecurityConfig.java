@@ -2,18 +2,22 @@ package com.fiuni.mytube_gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
 
     @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // Permitir acceso sin restricciones a todas las rutas
         http
-                .authorizeExchange(exchanges -> exchanges
-                        .anyExchange().permitAll())  // Permitir todas las solicitudes sin autenticación
-                .csrf(ServerHttpSecurity.CsrfSpec::disable); // Deshabilitar CSRF de manera compatible
+                .authorizeHttpRequests(authorize -> authorize
+                        .anyRequest().permitAll()  // Permitir todas las solicitudes sin autenticación
+                )
+                .csrf(AbstractHttpConfigurer::disable)  // Deshabilitar CSRF de manera segura
+                .cors(AbstractHttpConfigurer::disable);  // Habilitar CORS de manera segura
 
         return http.build();
     }
