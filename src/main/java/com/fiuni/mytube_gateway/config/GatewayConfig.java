@@ -8,25 +8,29 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class GatewayConfig {
 
+    // URLs local y produccion
+    private static final String baseUrlLocal = "http://localhost";
+    private static final String baseUrlProd = "http://mytube.rodrigomaidana.com";
+
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
 
                 // Ruta para el servicio de usuarios y suscripciones
                 .route("MYTUBE_USERS", r -> r.path("/users/**", "/subscriptions/**")
-                        .uri("http://localhost:8081"))
+                        .uri(baseUrlLocal + ":8081"))
 
                 // Ruta para el servicio de canales, listas de reproducción y videos en listas de reproducción
                 .route("MYTUBE_CHANNELS", r -> r.path("/channels/**", "/playlists/**", "/playlist_videos/**")
-                        .uri("http://localhost:8082"))
+                        .uri(baseUrlLocal + ":8082"))
 
                 // Ruta para el servicio de videos, historial de visualización, reacciones y comentarios
                 .route("MYTUBE_VIDEOS", r -> r.path("/viewingHistory/**", "/videos/**", "/reactions/**", "/comments/**")
-                        .uri("http://localhost:8083"))
+                        .uri(baseUrlLocal + ":8083"))
 
                 // Ruta para el servicio de autenticación y seguridad
                 .route("MYTUBE_SECURITY", r -> r.path("/auth/**")
-                        .uri("http://localhost:8084"))
+                        .uri(baseUrlLocal + ":8084"))
 
                 .build();
     }
