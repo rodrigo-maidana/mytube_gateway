@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class GatewayConfig {
 
     // URLs local y produccion
-    private static final String baseUrlLocal = "http://localhost";
-    private static final String baseUrlProd = "http://mytube.rodrigomaidana.com";
+    //private static final String baseUrl = "http://localhost";
+    private static final String baseUrl = "http://mytube.rodrigomaidana.com";
 
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
@@ -18,19 +18,19 @@ public class GatewayConfig {
 
                 // Ruta para el servicio de usuarios y suscripciones
                 .route("MYTUBE_USERS", r -> r.path("/users/**", "/subscriptions/**")
-                        .uri(baseUrlLocal + ":8081"))
+                        .uri(baseUrl + ":8081"))
 
                 // Ruta para el servicio de canales, listas de reproducción y videos en listas de reproducción
                 .route("MYTUBE_CHANNELS", r -> r.path("/channels/**", "/playlists/**", "/playlist_videos/**")
-                        .uri(baseUrlLocal + ":8082"))
+                        .uri(baseUrl + ":8082"))
 
                 // Ruta para el servicio de videos, historial de visualización, reacciones y comentarios
                 .route("MYTUBE_VIDEOS", r -> r.path("/viewingHistory/**", "/videos/**", "/reactions/**", "/comments/**")
-                        .uri(baseUrlLocal + ":8083"))
+                        .uri(baseUrl + ":8083"))
 
                 // Ruta para el servicio de autenticación y seguridad
                 .route("MYTUBE_SECURITY", r -> r.path("/auth/**")
-                        .uri(baseUrlLocal + ":8084"))
+                        .uri(baseUrl + ":8084"))
 
                 .build();
     }
