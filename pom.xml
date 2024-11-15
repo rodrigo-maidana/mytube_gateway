@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fiuni</groupId>
-	<artifactId>mytube_gateway2</artifactId>
+	<artifactId>mytube_gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>mytube_gateway2</name>
-	<description>mytube_gateway2</description>
+	<name>mytube_gateway</name>
+	<description>mytube_gateway</description>
 	<url/>
 	<licenses>
 		<license/>
