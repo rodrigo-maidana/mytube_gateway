@@ -1,4 +1,4 @@
-package com.fiuni.mytube_gateway2.config;
+package com.fiuni.mytube_gateway.config;
 
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;

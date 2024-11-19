@@ -1,4 +1,4 @@
-package com.fiuni.mytube_gateway2;
+package com.fiuni.mytube_gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
